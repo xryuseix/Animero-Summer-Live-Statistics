@@ -2,6 +2,8 @@ use regex::Regex;
 use reqwest::blocking;
 use scraper::{Html, Selector};
 
+use crate::dump_csv::dump_csv;
+
 pub fn make_setlist_2019() -> Result<(), Box<dyn std::error::Error>> {
     // リクエスト
     let body = blocking::get("https://anisama.tv/2019/setlist")?.text()?;
@@ -19,7 +21,7 @@ pub fn make_setlist_2019() -> Result<(), Box<dyn std::error::Error>> {
         // アーティスト名の先頭に入っている" / "を削除
         let idx = content[2].char_indices().nth(3).unwrap().0;
         content[2] = content[2][idx..].to_string();
-        
+
         // Jam Projectに入っているノーブレークスペースを削除
         let re = Regex::new(r"\u{a0}$").unwrap();
         content[2] = re.replace_all(&content[2], "").to_string();
@@ -28,9 +30,7 @@ pub fn make_setlist_2019() -> Result<(), Box<dyn std::error::Error>> {
         setlist.push(content);
     }
 
-    for row in setlist {
-        println!("{:?}", row);
-    }
+    dump_csv(&setlist, "2019".to_string())?;
 
     Ok(())
 }
