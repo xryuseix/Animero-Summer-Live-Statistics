@@ -1,0 +1,11 @@
+[package]
+authors = ["xryuseix"]
+edition = "2018"
+name = "make_setlist"
+version = "0.1.0"
+
+[dependencies]
+csv = "1.1.6"
+regex = "1.5.3"
+reqwest = {version = "0.11.3", features = ["blocking"]}
+scraper = "0.12.0"
