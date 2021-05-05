@@ -1,8 +1,10 @@
 use clap::Clap;
 mod dump_csv;
+mod make_2017;
 mod make_2018;
 mod make_2019;
 pub use crate::dump_csv::dump_csv;
+pub use crate::make_2017::make_setlist_2017;
 pub use crate::make_2018::make_setlist_2018;
 pub use crate::make_2019::make_setlist_2019;
 
@@ -22,6 +24,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let opts = Opts::parse();
     match opts.year {
         Some(year) => match year {
+            2017 => make_setlist_2017()?,
             2018 => make_setlist_2018()?,
             2019 => make_setlist_2019()?,
             _ => return Ok(()),
