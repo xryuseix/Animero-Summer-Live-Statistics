@@ -1,8 +1,8 @@
 use clap::Clap;
-use make_setlist::make_2016;
-use make_setlist::make_2017;
-use make_setlist::make_2018;
-use make_setlist::make_2019;
+use make_setlist::fetch::make_2016;
+use make_setlist::fetch::make_2017;
+use make_setlist::fetch::make_2018;
+use make_setlist::fetch::make_2019;
 
 #[derive(Clap, Debug)]
 #[clap(
@@ -26,7 +26,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             2019 => make_2019::make_setlist_2019()?,
             _ => return Ok(()),
         },
-        None => return Ok(()),
+        None => {
+            println!("USAGE: cargo run [OPTIONS] [--] [args(~2019)]");
+            return Ok(());
+        }
     };
     Ok(())
 }

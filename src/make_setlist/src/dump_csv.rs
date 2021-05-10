@@ -9,5 +9,6 @@ pub fn dump_csv(
         wtr.write_record(row)?;
     }
     wtr.flush()?;
+    println!("dump CSV is done. (make_setlist/out/{}.csv)", filename);
     Ok(())
 }
