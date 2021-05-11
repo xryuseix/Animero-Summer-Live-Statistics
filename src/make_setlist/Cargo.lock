@@ -557,6 +557,7 @@ version = "0.1.0"
 dependencies = [
  "clap",
  "csv",
+ "encoding_rs",
  "regex",
  "reqwest",
  "scraper",
