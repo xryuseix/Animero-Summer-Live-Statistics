@@ -1,1 +1,0 @@
-token=`cat .OAuth_token` && userID=`cat .userID` && curl -X "GET" "https://api.spotify.com/v1/users/${userID}/playlists" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer ${token}" > playlist.json

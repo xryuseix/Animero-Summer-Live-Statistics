@@ -6,11 +6,14 @@ with open(".userID") as f:
     userID = f.read()
 
 end_point = "https://api.spotify.com/v1/users/{}/playlists".format(userID)
-headers = {"Authorization": "Bearer {}".format(token)}
+headers = {
+    "Authorization": "Bearer {}".format(token),
+    "Content-Type": "application/json",
+}
 
 playlist = requests.get(end_point, headers=headers).json()
 
-with open("playlist.json", mode="w") as f:
+with open("playlist_info.json", mode="w") as f:
     f.write(json.dumps(playlist, ensure_ascii=False))
 
 for item in playlist["items"]:
