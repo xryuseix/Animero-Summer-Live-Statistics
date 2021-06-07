@@ -18,6 +18,6 @@ with open("playlist_info.json", mode="w") as f:
 
 for item in playlist["items"]:
     if item["name"] == "Animero Summer Live 2021 セットリスト予習":
-        with open(".playlistID", mode="w") as f:
+        with open(".playlist_id", mode="w") as f:
             f.write(item["id"])
         break
