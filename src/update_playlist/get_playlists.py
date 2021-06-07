@@ -17,6 +17,7 @@ def get(playlist_name):
 
     with open("playlist.json", mode="w") as f:
         f.write(json.dumps(playlist, ensure_ascii=False))
+    return playlist
 
 if __name__ == "__main__":
     playlist_name = "Animero Summer Live 2021 セットリスト予習"
