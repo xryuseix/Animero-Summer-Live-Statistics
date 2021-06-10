@@ -6,7 +6,7 @@ import json
 import re
 
 
-def add(track_ids):
+def add(track_id):
     with open(".client_id") as f:
         client_id = f.read()
     with open(".playlist_id") as f:
@@ -14,23 +14,22 @@ def add(track_ids):
     with open(".OAuth_token") as f:
         token = f.read()
 
-    uris = ["spotify:track:" + track_id for track_id in track_ids]
+    track_id = f"spotify:track:{track_id}"
 
     headers = {
-        "Authorization": "Bearer {}".format(token),
+        "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
         "Accept": "application/json",
     }
 
-    url = "https://api.spotify.com/v1/playlists/{}/tracks".format(playlist_id)
-
-    for i, uri in enumerate(uris):
-        url += "?uris=" if i == 0 else ","
-        url += uri
+    url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks?uris={track_id}"
 
     response = requests.post(url, headers=headers).json()
-
-    print(response)
+    if not ("error" in response):
+        return True
+    else:
+        print(response)
+        return False
 
 
 # track_idの表記揺れを修正
