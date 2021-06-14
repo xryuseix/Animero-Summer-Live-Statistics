@@ -9,8 +9,7 @@ def get(path):
     playlist_name = "Animero Summer Live 2021 セットリスト予習"
     playlist_name_en = "Animero Summer Live 2021"
     playlist = get_playlists.get(playlist_name)
-    items = playlist["tracks"]["items"]
-
+    items = playlist["items"]
 
     with open(path, "w") as f:
         writer = csv.writer(f)

@@ -26,8 +26,9 @@ def delete(track, position):
     # 0-indexと1-indexを間違えた時用
     if "error" in response:
         data["tracks"][0]["positions"][0] -= 1
+        print(data["tracks"][0]["positions"][0])
         response = requests.delete(url, data=json.dumps(data), headers=headers).json()
-    
+
     if "error" in response:
         return False
     else:
@@ -38,8 +39,10 @@ def delete(track, position):
 def is_exist(track_id, position, playlist_path):
     with open(playlist_path) as f:
         playlist = json.load(f)
-    items = playlist["tracks"]["items"]
+    items = playlist["items"]
     if position < len(items) and track_id == items[position]["track"]["id"]:
+        return True
+    elif position <= len(items) and track_id == items[position - 1]["track"]["id"]:
         return True
     else:
         return False
