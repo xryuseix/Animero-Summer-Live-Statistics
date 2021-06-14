@@ -63,7 +63,7 @@ def is_exist(track_id):
         return True
 
 
-def test():
+def shaping_test():
     track_id = "2fJxU3u51B99Z3brrsOTTa"
 
     assert shaping(track_id) == track_id
@@ -73,11 +73,14 @@ def test():
     assert shaping(f"https://open.spotify.com/track/{track_id}") == track_id
     assert shaping("https://") == None
 
+def exist_test():
+    track_id = "2fJxU3u51B99Z3brrsOTTa"
     assert is_exist(track_id) == True
     assert is_exist(track_id + "skjhdfskl") == False
 
 
 if __name__ == "__main__":
-    track_ids = ["2fJxU3u51B99Z3brrsOTTa"]
-    # add(track_ids)
-    test()
+    track_id = "2fJxU3u51B99Z3brrsOTTa"
+    shaping_test()
+    # exist_test()
+    add(track_id)
